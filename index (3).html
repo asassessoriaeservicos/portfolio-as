@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b2144">
+<title>A&S Assessoria e Serviços </title>
+<meta name="description" content="A&S Assessoria e Serviços é especializada em prevenção de perdas e aumento de lucratividade para empresas, oferecendo soluções estratégicas em gestão, eficiência operacional e segurança.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b2144;
+    --ink-2:#132c56;
+    --paper:#f4f6f9;
+    --paper-dim:#e4e8ee;
+    --forest:#16305c;
+    --forest-2:#1c3a63;
+    --brass:#a7b0ba;
+    --brass-dim:#8b95a1;
+    --rust:#2f4763;
+    --line: rgba(244,246,249,0.14);
+    --line-dark: rgba(11,33,68,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  section[id]{scroll-margin-top:76px;}
+  ::selection{background:var(--brass); color:var(--ink);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--brass); outline-offset:2px;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Fraunces', serif;}
+
+  /* ---------- utility ---------- */
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass-dim);
+  }
+  section{position:relative;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,33,68,0.95);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 1px 0 rgba(0,0,0,0.18);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{
+    color:var(--paper);
+    font-family:'Poppins', sans-serif;
+    font-weight:800;
+    font-size:19px;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+  }
+  .logo span{color:var(--brass); font-weight:600;}
+  .logo-sub{
+    color:var(--paper);
+    font-weight:400;
+    font-size:13px;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    opacity:.7;
+  }
+  .nav-links{display:flex; gap:36px; align-items:center;}
+  .nav-links a{
+    color:rgba(244,246,249,0.8);
+    font-size:14px;
+    font-weight:500;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--brass);}
+  .nav-cta{
+    background:var(--brass);
+    color:var(--ink) !important;
+    padding:10px 20px;
+    border-radius:2px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:24px; height:2px; background:var(--paper);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    background:radial-gradient(ellipse at 70% -10%, rgba(90,135,205,0.22), transparent 55%), var(--ink);
+    color:var(--paper);
+    padding:120px 0 90px;
+    overflow:hidden;
+  }
+  .hero-content{
+    max-width:640px;
+  }
+  .hero h1{
+    font-size:clamp(34px, 4.6vw, 58px);
+    line-height:1.08;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:18px 0 24px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--brass);
+  }
+  .hero p{
+    font-size:17px;
+    line-height:1.6;
+    color:rgba(244,246,249,0.72);
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--brass);
+    color:var(--ink);
+    padding:16px 26px;
+    font-weight:600;
+    font-size:14px;
+    letter-spacing:.02em;
+    border-radius:2px;
+    transition:transform .18s ease, background .18s ease;
+  }
+  .btn-primary:hover{background:#c3cad4; transform:translateY(-2px);}
+  .btn-primary svg{width:16px; height:16px;}
+
+  /* ---------- faixa de estatísticas ---------- */
+  .stats-strip{
+    background:var(--ink);
+    padding:34px 0;
+  }
+  .stats-inner{
+    display:flex;
+    flex-wrap:wrap;
+    gap:28px 56px;
+  }
+  .stat-item{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    flex:1 1 160px;
+    min-width:160px;
+  }
+  .stat-num{
+    font-size:clamp(22px, 4vw, 27px);
+    font-weight:700;
+    color:var(--paper);
+    letter-spacing:-0.01em;
+  }
+  .stat-label{
+    font-size:11.5px;
+    font-weight:500;
+    letter-spacing:.07em;
+    text-transform:uppercase;
+    color:var(--brass);
+    line-height:1.5;
+    max-width:22ch;
+  }
+
+  /* ---------- sobre ---------- */
+  .sobre{
+    padding:100px 0;
+    background:var(--paper);
+  }
+  .sobre-grid{
+    display:grid; grid-template-columns:.85fr 1.15fr; gap:70px; align-items:start;
+  }
+  .sobre h2{
+    font-size:clamp(28px,3vw,38px);
+    font-weight:600;
+    line-height:1.18;
+    margin:14px 0 0;
+  }
+  .sobre-body p{
+    font-size:16.5px;
+    line-height:1.75;
+    color:#3a4652;
+    margin-bottom:22px;
+  }
+  .clients{
+    margin-top:28px;
+    padding-top:26px;
+    border-top:1px solid var(--line-dark);
+  }
+  .clients-label{
+    font-size:11.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--forest-2);
+    font-family:'IBM Plex Mono', monospace;
+    margin-bottom:14px;
+  }
+  .client-list{
+    display:flex; flex-wrap:wrap; gap:10px 26px;
+  }
+  .client-list span{
+    font-family:'Fraunces', serif;
+    font-size:15px;
+    color:#3d4a58;
+    border-bottom:1px solid var(--brass-dim);
+    padding-bottom:2px;
+  }
+
+  /* ---------- servicos ---------- */
+  .servicos{
+    background:var(--ink);
+    color:var(--paper);
+    padding:110px 0 100px;
+  }
+  .servicos-head{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:40px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+  }
+  .servicos-head h2{
+    font-size:clamp(28px,3vw,36px);
+    font-weight:600;
+    max-width:22ch;
+  }
+  .servicos-head p{
+    color:rgba(244,246,249,0.6);
+    max-width:36ch;
+    font-size:15px;
+    line-height:1.6;
+  }
+  .service-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--ink);
+    padding:38px 34px 34px;
+    transition:background .25s ease;
+  }
+  .service-card:hover{background:var(--ink-2);}
+  .service-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--brass);
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:16px;
+  }
+  .service-card h3{
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .service-card p{
+    font-size:14.5px;
+    line-height:1.7;
+    color:rgba(244,246,249,0.62);
+  }
+
+  /* ---------- cta ---------- */
+  .cta-strip{
+    background:var(--forest);
+    color:var(--paper);
+    padding:80px 0;
+    text-align:center;
+  }
+  .cta-strip h2{
+    font-size:clamp(26px,3.4vw,40px);
+    font-weight:600;
+    max-width:20ch;
+    margin:0 auto 16px;
+    line-height:1.2;
+  }
+  .cta-strip p{
+    color:rgba(244,246,249,0.72);
+    max-width:48ch;
+    margin:0 auto 32px;
+    font-size:16px;
+  }
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:10px;
+    border:1px solid var(--brass);
+    color:var(--paper);
+    padding:15px 28px;
+    font-weight:600;
+    font-size:14px;
+    border-radius:2px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .btn-outline:hover{background:var(--brass); color:var(--ink);}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(244,246,249,0.7);
+    padding:56px 0 30px;
+    border-top:1px solid var(--line);
+  }
+  .footer-grid{
+    display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:40px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:22px;
+  }
+  .footer-logo{
+    font-family:'Poppins', sans-serif;
+    font-size:19px;
+    font-weight:800;
+    color:var(--paper);
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+  }
+  .footer-logo span{color:var(--brass); font-weight:600;}
+  .footer-col h4{
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--brass-dim);
+    margin-bottom:14px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .footer-col a, .footer-col p{
+    display:block;
+    font-size:14.5px;
+    margin-bottom:9px;
+    color:rgba(244,246,249,0.72);
+  }
+  .footer-col a:hover{color:var(--brass);}
+  .fine{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:12.5px;
+    color:rgba(244,246,249,0.4);
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0; transform:translateY(16px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .sobre-grid{grid-template-columns:1fr; gap:36px;}
+    .service-grid{grid-template-columns:1fr;}
+    .servicos-head{flex-direction:column; align-items:flex-start;}
+    .footer-grid{grid-template-columns:1fr; gap:26px;}
+  }
+  @media (max-width:640px){
+    .nav-links{
+      position:fixed; top:64px; left:0; right:0;
+      background:var(--ink);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:22px 32px;
+      gap:20px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-140%);
+      transition:transform .25s ease;
+      max-height:calc(100vh - 64px);
+      overflow-y:auto;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .burger{display:flex;}
+    .nav-cta{align-self:flex-start;}
+    .hero{padding:64px 0 48px;}
+    .hero p{font-size:16px;}
+    .stats-inner{gap:22px 32px;}
+    .stat-item{flex:1 1 42%; min-width:130px;}
+    .sobre{padding:64px 0;}
+    .servicos{padding:64px 0 60px;}
+    .cta-strip{padding:56px 0;}
+    .btn-primary, .btn-outline{
+      width:100%;
+      justify-content:center;
+    }
+  }
+  @media (max-width:480px){
+    .wrap{padding:0 20px;}
+    .nav{padding:16px 20px;}
+    .logo-sub{display:none;}
+    .service-card{padding:30px 24px 26px;}
+    .fine{flex-direction:column; gap:6px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">A<span>&</span>S <span class="logo-sub">Assessoria e Serviços</span></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="#inicio">Início</a>
+      <a href="#sobre">Quem Somos</a>
+      <a href="#servicos">Serviços</a>
+        <a class="nav-cta" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener">Fale com o especialista</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="wrap hero-content">
+    <div class="reveal">
+      <span class="eyebrow">Consultoria em Prevenção de Perdas · SP</span>
+      <h1>Descubra onde sua empresa está <em>perdendo dinheiro</em> — e como reverter isso em dinheiro no seu bolso.</h1>
+      <p>Somos especialistas em encontrar processos ineficientes, perdas disfarçadas e melhorias, que irão fazer seu negócio render muito mais. Vamos conversar!</p>
+      <a class="btn-primary" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20aumentar%20o%20lucro%20da%20minha%20empresa%20com%20a%20A%26S." target="_blank" rel="noopener">
+        Quero aumentar meu lucro!
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="wrap sobre-grid">
+    <div class="reveal">
+      <span class="eyebrow">Quem somos</span>
+      <h2>Parcerias que geram resultado.</h2>
+    </div>
+    <div class="reveal sobre-body">
+      <p>Na A&amp;S, nosso objetivo é encontrar todas as pedras no caminho do sucesso da sua empresa. Trabalhamos ao lado de cada cliente para eliminar desperdícios, recuperar lucros e aumentar a eficiência operacional.</p>
+      <p>Empresas como <strong><span>Ikesaki</span>, <span>Circuito de Compras S.A.</span>, <span>Evolving Cursos e Serviços</span>, <span>Keury Lingerie</span>, <span>Outlet Grifes D'Leste</span><strong> já conquistaram resultados expressivos com a A&amp;S, com perdas reduzidas em até 40% e eficiência dobrada.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="servicos" id="servicos">
+  <div class="wrap">
+    <div class="servicos-head reveal">
+      <h2>Nosso trabalho é fazer sua empresa lucrar, e fazemos isso através de quatro frentes:</h2>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <span class="service-tag">Diagnóstico</span>
+        <h3>Visibilidade de Perdas</h3>
+        <p><strong>Você sabe que algo está errado — mas onde, exatamente?</strong> Através de um diagnóstico claro e direto, mostramos onde está o erro ou desperdicio que vem drenando seu lucro, e como transformá-lo em ganho real para sua operação.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-tag">Pessoas</span>
+        <h3>Gestão Eficiente</h3>
+        <p> <strong>Você lidera, e nós garantimos que a sua equipe te acompanhe.</strong> Funcionários despreparados geram atrasos, riscos e até prejuízo. Ajudamos você a montar um time alinhado com seus objetivos, com recrutamento técnico e treinamento operacional sob medida.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-tag">Segurança</span>
+        <h3>Pontos de vulnerabilidade</h3>
+        <p><strong>Furtos, invasões e falhas operacionais exigem mais do que vigilância básica. </strong> A A&amp;S cuida de toda a sua segurança: analisamos o local, identificamos vulnerabilidades e desenvolvemos soluções personalizadas — incluindo porteiros e equipes de segurança altamente qualificadas.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-tag">Ambiente</span>
+        <h3>Limpeza profissional</h3>
+        <p><strong>Ambientes mal cuidados prejudicam a imagem da sua empresa.</strong> Atuamos com limpeza técnica, manutenção de áreas verdes e fornecimento de profissionais como recepcionistas, zeladores e copeiros. Garantimos ambientes organizados e funcionais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap reveal">
+    <h2>Pronto para assumir o controle do seu negócio?</h2>
+    <p>Você sabe onde quer chegar, e a gente te mostra o caminho, com segurança, estratégia e experiência.</p>
+
+    <a class="btn-outline" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener">Fale com o especialista!</a>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">A<span>&</span>S <span style="font-weight:400; font-size:13px; text-transform:none; opacity:.7;">Assessoria e Serviços</span></div>
+        <p style="max-width:32ch;">Consultoria de prevenção de perdas e eficiência operacional em São Paulo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Quem Somos</a>
+        <a href="#servicos">Serviços</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="mailto:contato@asconsultoriaeservicos.com.br">contato@asconsultoriaeservicos.com.br</a>
+        <a href="tel:+5511962241982">(11) 96224-1982 · Telefone/WhatsApp</a>
+ <a href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="fine">
+      <span>© A&amp;S Assessoria e Serviços — todos os direitos reservados.</span>
+      <span>São Paulo, SP</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
