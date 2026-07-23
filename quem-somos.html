@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b2144">
+<title>Quem Somos | A&S Assessoria e Serviços</title>
+<meta name="description" content="Conheça a A&S Assessoria e Serviços e seu fundador, Anderson Silva: mais de 15 anos de experiência em prevenção de perdas, segurança patrimonial e facilities.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b2144;
+    --ink-2:#132c56;
+    --paper:#f4f6f9;
+    --paper-dim:#e4e8ee;
+    --forest:#16305c;
+    --forest-2:#1c3a63;
+    --brass:#a7b0ba;
+    --brass-dim:#8b95a1;
+    --rust:#2f4763;
+    --line: rgba(244,246,249,0.14);
+    --line-dark: rgba(11,33,68,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  section[id]{scroll-margin-top:76px;}
+  ::selection{background:var(--brass); color:var(--ink);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--brass); outline-offset:2px;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .display{font-family:'Fraunces', serif;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass-dim);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,33,68,0.95);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 1px 0 rgba(0,0,0,0.18);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px; max-width:1120px; margin:0 auto;
+  }
+  .logo{
+    color:var(--paper);
+    font-family:'Poppins', sans-serif;
+    font-weight:800;
+    font-size:19px;
+    letter-spacing:.01em;
+    text-transform:uppercase;
+  }
+  .logo span{color:var(--brass); font-weight:600;}
+  .logo-sub{
+    color:var(--paper);
+    font-weight:400;
+    font-size:13px;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    opacity:.7;
+  }
+  .nav-links{display:flex; gap:36px; align-items:center;}
+  .nav-links a{
+    color:rgba(244,246,249,0.8);
+    font-size:14px;
+    font-weight:500;
+    transition:color .2s;
+  }
+  .nav-links a.active{color:var(--brass);}
+  .nav-links a:hover{color:var(--brass);}
+  .nav-cta{
+    background:var(--brass);
+    color:var(--ink) !important;
+    padding:10px 20px;
+    border-radius:2px;
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:.02em;
+  }
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:24px; height:2px; background:var(--paper);}
+
+  /* ---------- page hero ---------- */
+  .page-hero{
+    background:radial-gradient(ellipse at 70% -10%, rgba(90,135,205,0.22), transparent 55%), var(--ink);
+    color:var(--paper);
+    padding:110px 0 76px;
+  }
+  .page-hero h1{
+    font-size:clamp(32px, 4.2vw, 50px);
+    font-weight:600;
+    line-height:1.12;
+    margin:16px 0 20px;
+    max-width:18ch;
+  }
+  .page-hero p{
+    font-size:17px;
+    line-height:1.6;
+    color:rgba(244,246,249,0.72);
+    max-width:56ch;
+  }
+
+  /* ---------- intro ---------- */
+  .intro{
+    padding:90px 0 20px;
+    background:var(--paper);
+  }
+  .intro-grid{
+    display:grid; grid-template-columns:.8fr 1.2fr; gap:64px;
+  }
+  .intro h2{
+    font-size:clamp(24px,2.6vw,30px);
+    font-weight:600;
+    line-height:1.2;
+    position:sticky;
+    top:110px;
+  }
+  .intro-body p{
+    font-size:16.5px;
+    line-height:1.8;
+    color:#3a4652;
+    margin-bottom:20px;
+  }
+
+  /* ---------- founder ---------- */
+  .founder{
+    padding:60px 0 110px;
+    background:var(--paper);
+  }
+  .founder-card{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:4px;
+    padding:52px;
+    display:grid;
+    grid-template-columns:180px 1fr;
+    gap:44px;
+    align-items:start;
+  }
+  .avatar{
+    width:160px; height:160px;
+    border-radius:50%;
+    background:linear-gradient(160deg, var(--forest-2), var(--ink-2));
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Poppins', sans-serif;
+    font-size:48px;
+    font-weight:800;
+    color:var(--brass);
+  }
+  .founder-name{
+    font-size:26px;
+    font-weight:600;
+    margin-bottom:6px;
+  }
+  .founder-role{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--brass);
+    margin-bottom:22px;
+    display:block;
+  }
+  .founder-card p{
+    font-size:15.5px;
+    line-height:1.75;
+    color:rgba(244,246,249,0.72);
+    margin-bottom:16px;
+  }
+  .founder-quote{
+    border-left:2px solid var(--brass);
+    padding-left:20px;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:17px;
+    line-height:1.6;
+    color:var(--paper);
+    margin:22px 0;
+  }
+
+  /* ---------- cta ---------- */
+  .cta-strip{
+    background:var(--forest);
+    color:var(--paper);
+    padding:80px 0;
+    text-align:center;
+  }
+  .cta-strip h2{
+    font-size:clamp(26px,3.4vw,40px);
+    font-weight:600;
+    max-width:20ch;
+    margin:0 auto 16px;
+    line-height:1.2;
+  }
+  .cta-strip p{
+    color:rgba(244,246,249,0.72);
+    max-width:48ch;
+    margin:0 auto 32px;
+    font-size:16px;
+  }
+  .btn-outline{
+    display:inline-flex; align-items:center; gap:10px;
+    border:1px solid var(--brass);
+    color:var(--paper);
+    padding:15px 28px;
+    font-weight:600;
+    font-size:14px;
+    border-radius:2px;
+    transition:background .2s ease, color .2s ease;
+  }
+  .btn-outline:hover{background:var(--brass); color:var(--ink);}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(244,246,249,0.7);
+    padding:56px 0 30px;
+    border-top:1px solid var(--line);
+  }
+  .footer-grid{
+    display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:40px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:22px;
+  }
+  .footer-logo{
+    font-family:'Poppins', sans-serif;
+    font-size:19px;
+    font-weight:800;
+    color:var(--paper);
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    margin-bottom:12px;
+  }
+  .footer-logo span{color:var(--brass); font-weight:600;}
+  .footer-col h4{
+    font-size:12px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--brass-dim);
+    margin-bottom:14px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .footer-col a, .footer-col p{
+    display:block;
+    font-size:14.5px;
+    margin-bottom:9px;
+    color:rgba(244,246,249,0.72);
+  }
+  .footer-col a:hover{color:var(--brass);}
+  .fine{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:12.5px;
+    color:rgba(244,246,249,0.4);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .intro-grid{grid-template-columns:1fr; gap:24px;}
+    .intro h2{position:static;}
+    .founder-card{grid-template-columns:1fr; padding:36px 28px;}
+    .avatar{width:110px; height:110px; font-size:34px;}
+    .footer-grid{grid-template-columns:1fr; gap:26px;}
+  }
+  @media (max-width:640px){
+    .nav-links{
+      position:fixed; top:64px; left:0; right:0;
+      background:var(--ink);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:22px 32px;
+      gap:20px;
+      border-bottom:1px solid var(--line);
+      transform:translateY(-140%);
+      transition:transform .25s ease;
+      max-height:calc(100vh - 64px);
+      overflow-y:auto;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .burger{display:flex;}
+    .nav-cta{align-self:flex-start;}
+    .page-hero{padding:70px 0 50px;}
+    .intro{padding:56px 0 10px;}
+    .founder{padding:40px 0 70px;}
+    .btn-outline{width:100%; justify-content:center;}
+  }
+  @media (max-width:480px){
+    .wrap{padding:0 20px;}
+    .nav{padding:16px 20px;}
+    .logo-sub{display:none;}
+    .fine{flex-direction:column; gap:6px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">A<span>&</span>S <span class="logo-sub">Assessoria e Serviços</span></div>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html#inicio">Início</a>
+      <a href="quem-somos.html" class="active">Quem Somos</a>
+      <a href="index.html#servicos">Serviços</a>
+      <a class="nav-cta" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener">Fale com o especialista</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow">Quem somos</span>
+    <h1>Consultores que entendem sua realidade e entregam resultado.</h1>
+    <p>Parceiros prontos e capacitados para entender suas necessidades e contribuir na melhoria dos seus resultados.</p>
+  </div>
+</section>
+
+<section class="intro">
+  <div class="wrap intro-grid">
+    <h2>Nossa história</h2>
+    <div class="intro-body">
+      <p>Fundada em 2020 por Anderson Silva, nossa consultoria e assessoria foca na continuidade dos negócios das empresas, com o objetivo de auxiliar na proteção e no aumento dos seus lucros — através de uma consultoria humanizada, assessoria e serviços de gestão em Prevenção de Perdas, Segurança Patrimonial e Facilities em geral.</p>
+      <p>Com uma análise de 360º, atuamos nas melhores soluções integradas através do desenvolvimento humano, inovação, processos estruturados, controles eficazes e tecnologia — para uma operação mais eficiente e margens e lucros mais protegidos.</p>
+      <p>Nosso diferencial está no atendimento focado em resultados. Do nosso ponto de vista, não conquistamos clientes: conquistamos parceiros de negócio. Por isso, cada trabalho é estruturado de acordo com a necessidade de cada parceiro.</p>
+      <p>O resultado? Processos otimizados, soluções eficientes, perdas mitigadas ou eliminadas, aumento de desempenho e a tranquilidade de um negócio mais seguro. Mais do que consultoria, entregamos transformação real, com soluções sob medida para cada operação.</p>
+    </div>
+  </div>
+</section>
+
+<section class="founder">
+  <div class="wrap">
+    <div class="founder-card">
+      <div class="avatar">AS</div>
+      <div>
+        <div class="founder-name">Anderson Silva</div>
+        <span class="founder-role">Fundador · A&amp;S Assessoria e Serviços</span>
+        <p>Ex-militar das Forças Armadas e com mais de 15 anos de experiência na iniciativa privada, Anderson se tornou especialista em Governança Operacional e Corporativa, Auditoria Interna, Prevenção de Perdas, Segurança Patrimonial e Facilities.</p>
+        <p class="founder-quote">"Cada empresa enfrenta um desafio diferente — e é por isso que ofereço soluções sob medida, combinando técnicas apuradas, vivência prática e inovação."</p>
+        <p>Meu propósito vai além de consultorias e prestação de serviços. Atuo como parceiro estratégico, ajudando empresas a reduzir perdas, organizar processos e transformar eficiência em lucro real.</p>
+        <a class="btn-outline" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener" style="margin-top:8px;">Fale com o especialista</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-strip">
+  <div class="wrap">
+    <h2>Pronto para assumir o controle do seu negócio?</h2>
+    <p>Você sabe onde quer chegar, e a gente te mostra o caminho, com segurança, estratégia e experiência.</p>
+    <a class="btn-outline" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener">Fale com o especialista!</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">A<span>&</span>S <span style="font-weight:400; font-size:13px; text-transform:none; opacity:.7;">Assessoria e Serviços</span></div>
+        <p style="max-width:32ch;">Consultoria de prevenção de perdas e eficiência operacional em São Paulo.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <a href="index.html#inicio">Início</a>
+        <a href="quem-somos.html">Quem Somos</a>
+        <a href="index.html#servicos">Serviços</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="mailto:contato@asconsultoriaeservicos.com.br">contato@asconsultoriaeservicos.com.br</a>
+        <a href="tel:+5511962241982">(11) 96224-1982 · Telefone/WhatsApp</a>
+        <a href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="fine">
+      <span>© A&amp;S Assessoria e Serviços — todos os direitos reservados.</span>
+      <span>São Paulo, SP</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
+
+</body>
+</html>
