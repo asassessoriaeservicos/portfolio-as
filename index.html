@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0b2144">
-<title>A&S Assessoria e Serviços </title>
-<meta name="description" content="A&S Assessoria e Serviços é especializada em prevenção de perdas e aumento de lucratividade para empresas, oferecendo soluções estratégicas em gestão, eficiência operacional e segurança.">
+<title>AS Assessoria e Serviços </title>
+<meta name="description" content="AS Assessoria e Serviços é especializada em prevenção de perdas e aumento de lucratividade para empresas, oferecendo soluções estratégicas em gestão, eficiência operacional e segurança.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
@@ -22,6 +22,10 @@
     --rust:#2f4763;
     --line: rgba(244,246,249,0.14);
     --line-dark: rgba(11,33,68,0.12);
+    --radius:14px;
+    --radius-full:999px;
+    --shadow-soft:0 10px 30px rgba(11,33,68,0.10);
+    --shadow-dark:0 12px 32px rgba(0,0,0,0.28);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -92,11 +96,13 @@
     background:var(--brass);
     color:var(--ink) !important;
     padding:10px 20px;
-    border-radius:2px;
+    border-radius:var(--radius-full);
     font-size:13px;
     font-weight:600;
     letter-spacing:.02em;
+    transition:transform .18s ease, background .18s ease;
   }
+  .nav-cta:hover{transform:translateY(-1px); background:#c3cad4;}
   .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
   .burger span{width:24px; height:2px; background:var(--paper);}
 
@@ -132,14 +138,15 @@
     display:inline-flex; align-items:center; gap:10px;
     background:var(--brass);
     color:var(--ink);
-    padding:16px 26px;
+    padding:16px 28px;
     font-weight:600;
     font-size:14px;
     letter-spacing:.02em;
-    border-radius:2px;
-    transition:transform .18s ease, background .18s ease;
+    border-radius:var(--radius-full);
+    box-shadow:var(--shadow-dark);
+    transition:transform .18s ease, background .18s ease, box-shadow .18s ease;
   }
-  .btn-primary:hover{background:#c3cad4; transform:translateY(-2px);}
+  .btn-primary:hover{background:#c3cad4; transform:translateY(-2px); box-shadow:0 16px 36px rgba(0,0,0,0.34);}
   .btn-primary svg{width:16px; height:16px;}
 
   /* ---------- faixa de estatísticas ---------- */
@@ -242,16 +249,20 @@
     line-height:1.6;
   }
   .service-grid{
-    display:grid; grid-template-columns:repeat(2, 1fr); gap:1px;
-    background:var(--line);
-    border:1px solid var(--line);
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:20px;
   }
   .service-card{
-    background:var(--ink);
+    background:var(--ink-2);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
     padding:38px 34px 34px;
-    transition:background .25s ease;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
   }
-  .service-card:hover{background:var(--ink-2);}
+  .service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-dark);
+    border-color:var(--brass-dim);
+  }
   .service-tag{
     font-family:'IBM Plex Mono', monospace;
     font-size:11.5px;
@@ -300,10 +311,10 @@
     padding:15px 28px;
     font-weight:600;
     font-size:14px;
-    border-radius:2px;
-    transition:background .2s ease, color .2s ease;
+    border-radius:var(--radius-full);
+    transition:background .2s ease, color .2s ease, transform .18s ease;
   }
-  .btn-outline:hover{background:var(--brass); color:var(--ink);}
+  .btn-outline:hover{background:var(--brass); color:var(--ink); transform:translateY(-2px);}
 
   /* ---------- footer ---------- */
   footer{
@@ -347,6 +358,45 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
     font-size:12.5px;
     color:rgba(244,246,249,0.4);
+  }
+
+  /* ---------- whatsapp flutuante ---------- */
+  .wa-float{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    width:58px;
+    height:58px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 28px rgba(0,0,0,0.35);
+    z-index:100;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .wa-float svg{width:28px; height:28px; fill:#fff;}
+  .wa-float:hover{transform:translateY(-3px) scale(1.05); box-shadow:0 14px 34px rgba(0,0,0,0.4);}
+  .wa-float::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:#25D366;
+    animation:wa-pulse 2.4s ease-out infinite;
+    z-index:-1;
+  }
+  @keyframes wa-pulse{
+    0%{transform:scale(1); opacity:.55;}
+    100%{transform:scale(1.7); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .wa-float::before{animation:none;}
+  }
+  @media (max-width:480px){
+    .wa-float{width:52px; height:52px; bottom:18px; right:18px;}
+    .wa-float svg{width:25px; height:25px;}
   }
 
   /* ---------- reveal on scroll ---------- */
@@ -410,7 +460,7 @@
 
 <header>
   <div class="nav">
-    <div class="logo">A<span>&</span>S <span class="logo-sub">Assessoria e Serviços</span></div>
+    <div class="logo">A<span>&</span>S <span class="logo-sub">Assessoria</span></div>
     <nav class="nav-links" id="navLinks">
       <a href="index.html#inicio">Início</a>
       <a href="quem-somos.html">Quem Somos</a>
@@ -428,7 +478,7 @@
     <div class="reveal">
       <span class="eyebrow">Consultoria em Prevenção de Perdas · SP</span>
       <h1>Descubra onde sua empresa está <em>perdendo dinheiro</em> — e como reverter isso em dinheiro no seu bolso.</h1>
-      <p>Somos especialistas em encontrar processos ineficientes, perdas disfarçadas e melhorias, que irão fazer seu negócio render muito mais. Vamos conversar!</p>
+      <p>Somos especialistas em encontrar processos ineficientes, perdas disfarçadas e melhorias, que irão fazer sua empresa render muito mais. Vamos conversar!</p>
       <a class="btn-primary" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20aumentar%20o%20lucro%20da%20minha%20empresa%20com%20a%20A%26S." target="_blank" rel="noopener">
         Quero aumentar meu lucro!
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
@@ -437,17 +487,26 @@
   </div>
 </section>
 
+<section class="stats-strip">
+  <div class="wrap stats-inner">
+    <div class="stat-item reveal">
+      <span class="stat-num mono" data-target="15" data-suffix="+">0</span>
+      <span class="stat-label">anos de experiência em segurança e prevenção de perdas</span>
+    </div>
+    <div class="stat-item reveal">
+      <span class="stat-num mono" data-target="100" data-suffix="%">0</span>
+      <span class="stat-label">satisfação dos clientes</span>
+    </div>
+
 <section class="sobre" id="sobre">
   <div class="wrap sobre-grid">
     <div class="reveal">
-      <span class="eyebrow">Quem somos</span>
+      <span class="eyebrow">Sobre a AS</span>
       <h2>Parcerias que geram resultado.</h2>
     </div>
     <div class="reveal sobre-body">
-      <p>Na A&amp;S, nosso objetivo é encontrar todas as pedras no caminho do sucesso da sua empresa. Trabalhamos ao lado de cada cliente para eliminar desperdícios, recuperar lucros e aumentar a eficiência operacional.</p>
-      <p>Empresas como <strong><span>Ikesaki</span>, <span>Circuito de Compras S.A.</span>, <span>Evolving Cursos e Serviços</span>, <span>Keury Lingerie</span>, <span>Outlet Grifes D'Leste</span><strong> já conquistaram resultados expressivos com a A&amp;S, com perdas reduzidas em até 40% e eficiência dobrada.
-        </div>
-      </div>
+      <p>Na AS, nosso objetivo é encontrar e remover todas as pedras no caminho do sucesso da sua empresa. Trabalhamos ao lado de cada cliente para eliminar desperdícios, recuperar lucros e aumentar a eficiência operacional.</p>
+      <p>Empresas como <strong>Ikesaki, Circuito de Compras S.A., Evolving Cursos e Serviços, Keury Lingerie, Outlet Grifes D'Leste</strong> já conquistaram resultados expressivos com a AS, com perdas e desperdícios reduzidos em até 40% e eficiência dobrada.</p>
     </div>
   </div>
 </section>
@@ -476,7 +535,7 @@
       <div class="service-card reveal">
         <span class="service-tag">Ambiente</span>
         <h3>Limpeza profissional</h3>
-        <p><strong>Ambientes mal cuidados prejudicam a imagem da sua empresa.</strong> Atuamos com limpeza técnica, manutenção de áreas verdes e fornecimento de profissionais como recepcionistas, zeladores e copeiros. Garantimos ambientes organizados e funcionais.</p>
+        <p><strong>Ambientes mal cuidados prejudicam a imagem da sua empresa.</strong> Atuamos com limpeza técnica, manutenção de áreas verdes e fornecimento de profissionais como recepcionistas, zeladores, copeiros e até serviços de bombeiros. Garantimos ambientes organizados e funcionais.</p>
       </div>
     </div>
   </div>
@@ -518,6 +577,10 @@
   </div>
 </footer>
 
+<a class="wa-float" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9.4 9.4 8 9.2 7.5c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3c1.5.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.9 14.9 3.5 13.5 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.3-8.5 8.3z"/></svg>
+</a>
+
 <script>
   const burger = document.getElementById('burger');
   const navLinks = document.getElementById('navLinks');
@@ -529,6 +592,29 @@
     entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   }, {threshold:0.15});
   revealEls.forEach(el => io.observe(el));
+
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const statNums = document.querySelectorAll('.stat-num');
+  const statIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || '';
+      if(prefersReducedMotion){ el.textContent = target + suffix; statIo.unobserve(el); return; }
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now){
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if(progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      statIo.unobserve(el);
+    });
+  }, {threshold:0.4});
+  statNums.forEach(el => statIo.observe(el));
 </script>
 
 </body>

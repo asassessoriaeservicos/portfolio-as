@@ -22,6 +22,10 @@
     --rust:#2f4763;
     --line: rgba(244,246,249,0.14);
     --line-dark: rgba(11,33,68,0.12);
+    --radius:14px;
+    --radius-full:999px;
+    --shadow-soft:0 10px 30px rgba(11,33,68,0.10);
+    --shadow-dark:0 12px 32px rgba(0,0,0,0.28);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
@@ -90,11 +94,13 @@
     background:var(--brass);
     color:var(--ink) !important;
     padding:10px 20px;
-    border-radius:2px;
+    border-radius:var(--radius-full);
     font-size:13px;
     font-weight:600;
     letter-spacing:.02em;
+    transition:transform .18s ease, background .18s ease;
   }
+  .nav-cta:hover{transform:translateY(-1px); background:#c3cad4;}
   .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
   .burger span{width:24px; height:2px; background:var(--paper);}
 
@@ -148,7 +154,8 @@
   .founder-card{
     background:var(--ink);
     color:var(--paper);
-    border-radius:4px;
+    border-radius:20px;
+    box-shadow:var(--shadow-dark);
     padding:52px;
     display:grid;
     grid-template-columns:180px 1fr;
@@ -224,10 +231,10 @@
     padding:15px 28px;
     font-weight:600;
     font-size:14px;
-    border-radius:2px;
-    transition:background .2s ease, color .2s ease;
+    border-radius:var(--radius-full);
+    transition:background .2s ease, color .2s ease, transform .18s ease;
   }
-  .btn-outline:hover{background:var(--brass); color:var(--ink);}
+  .btn-outline:hover{background:var(--brass); color:var(--ink); transform:translateY(-2px);}
 
   /* ---------- footer ---------- */
   footer{
@@ -271,6 +278,45 @@
     display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
     font-size:12.5px;
     color:rgba(244,246,249,0.4);
+  }
+
+  /* ---------- whatsapp flutuante ---------- */
+  .wa-float{
+    position:fixed;
+    bottom:24px;
+    right:24px;
+    width:58px;
+    height:58px;
+    background:#25D366;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 28px rgba(0,0,0,0.35);
+    z-index:100;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .wa-float svg{width:28px; height:28px; fill:#fff;}
+  .wa-float:hover{transform:translateY(-3px) scale(1.05); box-shadow:0 14px 34px rgba(0,0,0,0.4);}
+  .wa-float::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    background:#25D366;
+    animation:wa-pulse 2.4s ease-out infinite;
+    z-index:-1;
+  }
+  @keyframes wa-pulse{
+    0%{transform:scale(1); opacity:.55;}
+    100%{transform:scale(1.7); opacity:0;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .wa-float::before{animation:none;}
+  }
+  @media (max-width:480px){
+    .wa-float{width:52px; height:52px; bottom:18px; right:18px;}
+    .wa-float svg{width:25px; height:25px;}
   }
 
   /* ---------- responsive ---------- */
@@ -351,13 +397,13 @@
 <section class="founder">
   <div class="wrap">
     <div class="founder-card">
-      <div class="avatar">AS</div>
+      <div class="avatar"><img src="assets/founder.png" alt="Anderson Silva, fundador da A&S Assessoria e Serviços" style="width:100%; height:100%; object-fit:cover; border-radius:50%;"></div>
       <div>
         <div class="founder-name">Anderson Silva</div>
         <span class="founder-role">Fundador · A&amp;S Assessoria e Serviços</span>
         <p>Ex-militar das Forças Armadas e com mais de 15 anos de experiência na iniciativa privada, Anderson se tornou especialista em Governança Operacional e Corporativa, Auditoria Interna, Prevenção de Perdas, Segurança Patrimonial e Facilities.</p>
         <p class="founder-quote">"Cada empresa enfrenta um desafio diferente — e é por isso que ofereço soluções sob medida, combinando técnicas apuradas, vivência prática e inovação."</p>
-        <p>Meu propósito vai além de consultorias e prestação de serviços. Atuo como parceiro estratégico, ajudando empresas a reduzir perdas, organizar processos e transformar eficiência em lucro real.</p>
+        <p>Nosso propósito vai além de consultorias e prestação de serviços. Atuo como seu parceiro estratégico, ajudando sua empresa a reduzir perdas, organizar processos e fazer seu lucro aumentar.</p>
         <a class="btn-outline" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener" style="margin-top:8px;">Fale com o especialista</a>
       </div>
     </div>
@@ -398,6 +444,10 @@
     </div>
   </div>
 </footer>
+
+<a class="wa-float" href="https://wa.me/5511962241982?text=Ol%C3%A1!%20Quero%20falar%20com%20um%20especialista%20da%20A%26S." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C10 9.4 9.4 8 9.2 7.5c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1s1 2.5 1.1 2.6c.1.2 2 3 4.7 4.2.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5.1-1.3c1.5.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3.3.9.9-3.2-.2-.3C3.9 14.9 3.5 13.5 3.5 12c0-4.7 3.8-8.5 8.5-8.5s8.5 3.8 8.5 8.5-3.8 8.3-8.5 8.3z"/></svg>
+</a>
 
 <script>
   const burger = document.getElementById('burger');
